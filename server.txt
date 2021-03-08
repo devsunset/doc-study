@@ -1,0 +1,64 @@
+
+# Public IP Address :193.123.252.22
+
+############################################################
+# INSTALL PROGRAM
+
+sudo apt update
+
+sudo apt java (recommand select)
+
+sudo apt node (recommand select)
+
+sudo apt npm (recommand select)
+  - general user docker execute role apply 
+  root#] sudo usermod -a -G docker $USER
+
+
+- go install
+wget http_download_address <- go1.16.linux-amd64.tar.gz (123MB)
+
+tar -C /usr/local -xzf go1.16.linux-amd64.tar.gz
+
+~/.bashrc
+
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=/home/ubuntu/go
+
+source .bashrc
+
+############################################################
+# Directory Create
+
+sudo -
+
+-- make directory 
+mkdir -p /workspace/app 
+mkdir -p /workspace/devwork 
+mkdir -p /workspace/doc 
+mkdir -p /workspace/storge 
+mkdir -p /workspace/temp 
+
+-- root -> ubuntu
+chown ubuntu/ubuntu directory_name 
+
+
+############################################################
+# SERVER SETTING 
+
+# TimeZone Change
+sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+
+* root , user
+  ~/.bashrc
+  TZ='Asia/Seoul'; export TZ 
+
+  source .bashrc
+
+
+# Vim set number
+~/.vimrc
+
+  set number 
+
+
