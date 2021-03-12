@@ -1,0 +1,71 @@
+1. Termux App  install
+
+2. Andronix App install
+
+3. Termux execute
+   ~/
+   mkdir ubuntu && cd ubuntu
+   
+3. Andronix App
+   Ubuntu -> Install -> Ubuntu20.04 -> XFCE : copy 
+   
+4. Termux
+   ~/ubuntu/ -> paste  -> install
+
+5. Andronix App
+   Window Manager -> Awesome -> copy
+
+6. Termux
+   ~/ubuntu/ -> paste -> install
+
+7. Termux
+   ~/ubuntu/.start-ubuntu20.sh execute
+
+8. ubuntu
+   root# chmod 755 awesome.sh && ./awesome.sh
+
+  cf : "Temporary failure in name resolution" 에러  Linux / 네트워크   
+      /etc/network/interfaces 에서 dns-nameservers 설정해주어도 DNS 에러가 발생하는 경우가 있음.
+      이때는 /etc/resolv.conf 에 직접 DNS 명시해주면 해결 됨
+
+      sudo vi /etc/resolv.conf
+      nameserver 8.8.8.8
+      nameserver 8.8.4.4
+      저장하면 바로 적용 됨
+
+      재부팅할 경우 resolv.conf의 nameserver가 127.0.0.1로 초기화되는 경우 있음
+      -> apt-get install resolvconf
+
+9. ubuntu
+   root# vncserver-stop && vncserver-start
+
+10. Open Desktop Manager App Install
+
+11. VNC connect
+
+12. TimeZone Change 
+    ubuntu
+    root# sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+
+    ~/.bashrc 
+    TZ='Asia/Seoul'; export TZ 
+
+    source .bashrc
+
+13. Korean 
+    locale & Font install 
+    ubuntu
+    root# sudo apt-get install language-pack-ko
+    root# sudo locale-gen ko_KR.UTF-8
+    root# sudo update-locale LANG=ko_KR.UTF-8 LC_MESSAGES=POSIX
+    root# sudo apt install fonts-nanum-coding
+   
+
+    
+
+   
+
+
+
+
+
