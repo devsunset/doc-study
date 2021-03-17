@@ -48,8 +48,9 @@ $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 5432 -m state --state NEW,ESTA
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 27017 -m state --state NEW,ESTABLISHED -j ACCEPT
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 6739 -m state --state NEW,ESTABLISHED -j ACCEPT
 
+$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 5901 -m state --state NEW,ESTABLISHED -j ACCEPT
 
-$ sudo iptable --list
+$ sudo iptables--list
 
 
 * 재부팅 후에도 방화벽 정책 유지 
