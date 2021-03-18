@@ -28,8 +28,8 @@ general user docker execute role apply
 root#] sudo usermod -a -G docker $USER
 
 - git 
-git config --global user.name "devsunset"
-git config --global user.email "devsunset@gmail.com"
+sudo git config --global user.name "devsunset"
+sudo git config --global user.email "devsunset@gmail.com"
 
 
 ############################################################
