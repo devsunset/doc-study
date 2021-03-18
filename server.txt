@@ -24,8 +24,10 @@ export PATH=$PATH:/usr/local/go/bin
 export GOPATH=/workspace/program/go
 
 - docker
-general user docker execute role apply 
-root#] sudo usermod -a -G docker $USER
+sudo apt install docker.io
+
+*general user docker execute role apply 
+sudo usermod -a -G docker ubuntu
 
 - git 
 sudo git config --global user.name "devsunset"
@@ -45,7 +47,7 @@ mkdir -p /workspace/storge
 mkdir -p /workspace/temp 
 
 -- root -> ubuntu
-chown ubuntu:ubuntu directory_name 
+sudo chown ubuntu:ubuntu /workspace 
 
 
 ############################################################
