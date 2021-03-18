@@ -4,28 +4,33 @@
 ############################################################
 # INSTALL PROGRAM
 
-sudo apt update
+sudo apt update && sudo apt upgrade
 
-sudo apt java (recommand select)
+- java
+sudo apt install openjdk-8-jre-headless
 
-sudo apt node (recommand select)
+- nodejs
+sudo apt install nodejs
 
-sudo apt npm (recommand select)
-  - general user docker execute role apply 
-  root#] sudo usermod -a -G docker $USER
+- npm 
+sudo apt install npm
 
-
-- go install
-wget http_download_address <- go1.16.linux-amd64.tar.gz (123MB)
-
+- go
+wget https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
 tar -C /usr/local -xzf go1.16.linux-amd64.tar.gz
 
-~/.bashrc
-
+~/.profile
 export PATH=$PATH:/usr/local/go/bin
-export GOPATH=/home/ubuntu/go
+export GOPATH=/workspace/program/go
 
-source .bashrc
+- docker
+general user docker execute role apply 
+root#] sudo usermod -a -G docker $USER
+
+- git 
+git config --global user.name "devsunset"
+git config --global user.email "devsunset@gmail.com"
+
 
 ############################################################
 # Directory Create
@@ -40,7 +45,7 @@ mkdir -p /workspace/storge
 mkdir -p /workspace/temp 
 
 -- root -> ubuntu
-chown ubuntu/ubuntu directory_name 
+chown ubuntu:ubuntu directory_name 
 
 
 ############################################################
