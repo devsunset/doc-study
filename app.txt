@@ -43,7 +43,7 @@ $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 80 -m state --state NEW,ESTABL
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 8080 -m state --state NEW,ESTABLISHED -j ACCEPT
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 8181 -m state --state NEW,ESTABLISHED -j ACCEPT
-
+$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 8282 -m state --state NEW,ESTABLISHED -j ACCEPT
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 5432 -m state --state NEW,ESTABLISHED -j ACCEPT
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 27017 -m state --state NEW,ESTABLISHED -j ACCEPT
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 6739 -m state --state NEW,ESTABLISHED -j ACCEPT
