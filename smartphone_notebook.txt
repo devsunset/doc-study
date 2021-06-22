@@ -1,0 +1,77 @@
+
+
+### smartphone convert to notebook ###
+
+
+1.Install Termux (google player)
+
+2.Setting Termux-setup-storage
+  https://wiki.termux.com/wiki/Termux-setup-storage
+
+$ termux-storage-storage
+
+	Android 11
+	You may get "Permission denied" error when trying to access shared storage, even though the permission has been granted.
+
+	Workaround:
+
+	Go to Android Settings --> Applications --> Termux --> Permissions
+	Revoke Storage permission
+	Grant Storage permission again
+
+3.mkdir ubuntu
+  - Termux execute
+  - mkdir ubuntu
+
+4.pkg command study
+  https://admion.net/port-and-pkg/
+  - install vim 
+  - Termux execute
+  - pkg install vim
+
+5.Install Andronix (google player) 
+
+6.Install bVNC: Secure VNC Viewer (google player)
+
+7.Install ubuntu
+  - Termux execute
+  - cd ubuntu
+  - pkg update -y && pkg install curl proot tar -y && curl https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Ubuntu20/ubuntu20-xfce.sh | bash
+    (Andronix execute -> Ubuntu -> Install -> Ubuntu 20.04 -> XFCE : command copy)
+
+8.Install Openbox
+  - Termux execute
+  - cd ubuntu
+  - ./start-ubuntu20.sh
+  - pkg update -y && pkg install curl proot tar -y && curl https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Ubuntu20/ubuntu20-openbox.sh | bash
+    (Andronix execute -> Ubuntu -> Install -> Ubuntu 20.04 -> Window Manager -> Openbox : command copy)
+ 
+cf) install connection fail...
+    - dns setting
+    - vi /etc/resolv.conf
+    nameserver 1.1.1.1
+    nameserver 8.8.8.8
+    nameserver 8.8.4.4
+
+9.Install tigervnc
+   -apt-get install tigervnc-standalone-server
+
+10.vnc execute shll 
+   - vi vnc.sh
+    vncserver-stop && vncserver-start
+   - chmod 755 vnc.sh
+   - ./vnc.sh
+
+11.connect bVNC
+ 
+12.Install program (arm version)
+   apt install <program>
+
+   *node, go ... etc
+
+   *java
+   /workspace/program/zulu11.35.36-ca-jdk11.0.5-linux_aarch64
+
+   *vscode 
+
+
