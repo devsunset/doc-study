@@ -74,6 +74,7 @@ cf) install connection fail...
 
    *vscode 
 
+https://www.docker.com/blog/getting-started-with-docker-for-arm-on-linux/
 docker install
 $ sudo apt-get update
 $ sudo apt-get upgrade
