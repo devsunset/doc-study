@@ -52,18 +52,18 @@ cf) 설치 중 오류 발생 시 아래의 dns 정보 수정
     nameserver 8.8.8.8
     nameserver 8.8.4.4
 
-9.Install tigervnc
-   -apt-get install tigervnc-standalone-server
-
-10.vnc execute shll 
+9.vnc execute shll 
    - vi vnc.sh
     vncserver-stop && vncserver-start
    - chmod 755 vnc.sh
    - ./vnc.sh
+   
+   Install tigervnc
+   apt-get install tigervnc-standalone-server
 
-11.connect bVNC
+10.connect bVNC
  
-12.Install program (arm version)
+11.Install program (arm version)
    apt install <program>
 
    *node, go ... etc
