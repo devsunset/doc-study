@@ -78,8 +78,10 @@
  
 11.Install program (arm version)
    apt install <program>
-
-   *node, go ... etc
+   	nodjs   
+   
+   --- 다운로드 설치 ---
+   * go
 
    *java
    /workspace/program/zulu11.35.36-ca-jdk11.0.5-linux_aarch64
