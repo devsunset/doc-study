@@ -54,8 +54,11 @@
 	    nameserver 1.1.1.1
 	    nameserver 8.8.8.8
 	    nameserver 8.8.4.4
+  - 설치 종료 시점 vncserver 패스워드 설정
 
 9.vnc execute shll 
+   - vncserver 해상도 설정
+   - xrandr -s 1920x1080
    - vi vnc.sh
     vncserver-stop && vncserver-start
    - chmod 755 vnc.sh
@@ -65,7 +68,9 @@
    apt-get install tigervnc-standalone-server
 
 10.connect bVNC
-   
+   localhost  5901
+   user_id
+   user_pw
  
 11.Install program (arm version)
    apt install <program>
