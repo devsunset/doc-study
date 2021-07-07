@@ -2,31 +2,26 @@
 
 ### smartphone convert to notebook ###
 
-
 1.Install Termux (google player)
 
 2.Setting Termux-setup-storage
   https://wiki.termux.com/wiki/Termux-setup-storage
-
-$ termux-storage-storage
-
-	Android 11
+  - 안드로이드 앱 설정 - termux 앱 권한 저장공간 허용 
+  Android 11
 	You may get "Permission denied" error when trying to access shared storage, even though the permission has been granted.
-
 	Workaround:
-
 	Go to Android Settings --> Applications --> Termux --> Permissions
 	Revoke Storage permission
 	Grant Storage permission again
-
+	
+$ termux-storage-storage
+	
 3.mkdir ubuntu
   - Termux execute
   - mkdir ubuntu
 
-4.pkg command study
+4.pkg command study & install vim
   https://admion.net/port-and-pkg/
-  - install vim 
-  - Termux execute
   - pkg install vim
 
 5.Install Andronix (google player) 
@@ -38,7 +33,12 @@ $ termux-storage-storage
   - cd ubuntu
   - pkg update -y && pkg install curl proot tar -y && curl https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Ubuntu20/ubuntu20-xfce.sh | bash
     (Andronix execute -> Ubuntu -> Install -> Ubuntu 20.04 -> XFCE : command copy)
-
+    
+    위의 명령어 실행시 저장소 관련 오류 발생 시 아래 명령어 실행 후 재 실행
+    pkg remove game-repo
+    pkg remove science-repo
+    pkg update 
+    
 8.Install Openbox
   - Termux execute
   - cd ubuntu
@@ -74,9 +74,4 @@ cf) install connection fail...
 
    *vscode 
 
-https://www.docker.com/blog/getting-started-with-docker-for-arm-on-linux/
-docker install
-$ sudo apt-get update
-$ sudo apt-get upgrade
-$ curl -fsSL test.docker.com -o get-docker.sh && sh get-docker.sh
-$ sudo usermod -aG docker $USER 
+
