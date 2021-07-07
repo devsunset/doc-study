@@ -42,11 +42,10 @@ $ termux-storage-storage
 8.Install Openbox
   - Termux execute
   - cd ubuntu
-  - ./start-ubuntu20.sh
   - pkg update -y && pkg install curl proot tar -y && curl https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Ubuntu20/ubuntu20-openbox.sh | bash
     (Andronix execute -> Ubuntu -> Install -> Ubuntu 20.04 -> Window Manager -> Openbox : command copy)
  
-cf) install connection fail...
+cf) 설치 중 오류 발생 시 아래의 dns 정보 수정
     - dns setting
     - vi /etc/resolv.conf
     nameserver 1.1.1.1
