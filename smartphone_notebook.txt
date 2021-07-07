@@ -14,7 +14,7 @@
 	Revoke Storage permission
 	Grant Storage permission again
 	
-$ termux-storage-storage
+  $ termux-storage-storage
 	
 3.mkdir ubuntu
   - Termux execute
@@ -44,13 +44,16 @@ $ termux-storage-storage
   - cd ubuntu
   - pkg update -y && pkg install curl proot tar -y && curl https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Ubuntu20/ubuntu20-openbox.sh | bash
     (Andronix execute -> Ubuntu -> Install -> Ubuntu 20.04 -> Window Manager -> Openbox : command copy)
- 
-cf) 설치 중 오류 발생 시 아래의 dns 정보 수정
-    - dns setting
-    - vi /etc/resolv.conf
-    nameserver 1.1.1.1
-    nameserver 8.8.8.8
-    nameserver 8.8.4.4
+  - ./start-ubuntu20.sh
+  - openbox.sh (chmod 755)
+  - ./openbox.sh
+   
+	cf) 설치 중 오류 발생 시 아래의 dns 정보 수정
+	    - dns setting
+	    - vi /etc/resolv.conf
+	    nameserver 1.1.1.1
+	    nameserver 8.8.8.8
+	    nameserver 8.8.4.4
 
 9.vnc execute shll 
    - vi vnc.sh
@@ -58,10 +61,11 @@ cf) 설치 중 오류 발생 시 아래의 dns 정보 수정
    - chmod 755 vnc.sh
    - ./vnc.sh
    
-   Install tigervnc
+   이미 vnc는 설치되어 있음 설치 안되어 있으면 아래 설치 구문으로 설치
    apt-get install tigervnc-standalone-server
 
 10.connect bVNC
+   
  
 11.Install program (arm version)
    apt install <program>
