@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Kakao 지도 시작하기</title>
+</head>
+<body>
+	<div id="map" style="width:800px;height:600px;"></div>
+    <a href="https://apis.map.kakao.com/web/wizard/">https://apis.map.kakao.com/web/wizard/</a>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fc3ffc2cce82269dd8b0295c881c7e2c"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667),  //위도(latitude), 경도(longitude)
+			level: 5
+		};
+
+		var map = new kakao.maps.Map(container, options);
+	</script>
+</body>
+<!--
+* 라이브러리 사용하기 
+clusterer: 마커를 클러스터링 할 수 있는 클러스터러 라이브러리 입니다.
+services: 장소 검색 과 주소-좌표 변환 을 할 수 있는 services 라이브러리 입니다.
+drawing: 지도 위에 마커와 그래픽스 객체를 쉽게 그릴 수 있게 그리기 모드를 지원하는 drawing 라이브러리 입니다.
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
+
+// services 라이브러리 불러오기 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
+
+// services와 clusterer, drawing 라이브러리 불러오기 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+
+* 지도 URL
+
+지도 바로가기
+좌표나 장소ID를 이용하여 Kakao 지도에서 해당 위치를 표시한 상태의 URL을 만들수 있습니다. 장소ID는 키워드로 장소 검색 API 또는 카테고리로 장소 검색 API를 이용한 경우에 반환된 값에서 확인하실 수 있습니다.
+URL Pattern	예시
+/link/map/위도,경도	https://map.kakao.com/link/map/37.402056,127.108212
+/link/map/이름,위도,경도	https://map.kakao.com/link/map/우리회사,37.402056,127.108212
+/link/map/장소ID	https://map.kakao.com/link/map/18577297
+
+길찾기 바로가기
+좌표나 장소ID를 이용하여 해당 위치를 목적지로 지정한 상태의 길찾기 URL을 만들 수 있습니다.
+URL Pattern	예시
+/link/to/이름,위도,경도	https://map.kakao.com/link/to/카카오판교오피스,37.402056,127.108212
+/link/to/장소ID	https://map.kakao.com/link/to/18577297
+
+로드뷰 바로가기
+좌표나 장소ID를 이용하여 해당 위치의 로드뷰를 바로 실행하는 URL을 만들 수 있습니다.
+URL Pattern	예시
+/link/roadview/위도,경도	https://map.kakao.com/link/roadview/37.402056,127.108212
+/link/roadview/장소ID	https://map.kakao.com/link/roadview/18577297
+
+지도 검색결과 바로가기
+검색어를 이용하여 검색결과를 표시한 상태의 URL을 만들 수도 있습니다.
+URL Pattern	예시
+/link/search/검색어	https://map.kakao.com/link/search/카카오
+
+
+* Sample
+https://apis.map.kakao.com/web/sample/
+
+* Document 
+https://apis.map.kakao.com/web/documentation/
+
+* Dev Talk
+https://devtalk.kakao.com/c/map-api
+
+* Wizard
+https://apis.map.kakao.com/web/wizard/
+-->
+</html>
