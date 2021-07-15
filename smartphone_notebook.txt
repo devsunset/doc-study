@@ -124,6 +124,13 @@
  
 
 9. Ubuntu 기본 환경 설정 및 개발 프로그램 설치 (arm 버젼으로 설치해야 함)
+   9-0. .bashrc 파일에 아래 내용 추가 
+        $ vi ~/.bashrc
+	alias cls='clear'
+	alias python='python3'
+	alias pip=pip3
+	TZ='Asia/Seoul'; export TZ
+
    
    9-1. 한글 지원 폰트 설치 - 글꼴 설치 한다고 한글입력 처리등이 되지는 않음 (한글 적용 시도 했지만 적용이 안됨 - 문제점)
         * 나눔글꼴 설치
