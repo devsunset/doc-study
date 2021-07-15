@@ -118,7 +118,9 @@
  
 
 9. Ubuntu 기본 환경 설정 및 개발 프로그램 설치 (arm 버젼으로 설치해야 함)
-
+   
+   9-1. 나눔글꼴 설치 - 글꼴 설치 한다고 한글입력 처리등이 되지는 않음 (한글 적용 시도 했지만 적용이 안됨 - 문제점)
+        sudo apt-get install fonts-nanum   (해당 내용 설치 하면 chromium 한글깨짐 해결됨)
 
    apt install <program>
 
