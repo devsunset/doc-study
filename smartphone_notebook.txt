@@ -144,7 +144,8 @@
   	- vscode 
 	https://code.visualstudio.com/
 	Other platform > ARM64 버젼 deb 파일 다운로드 후 dpkg 명령어로 설치 
-	최신버젼 설치시 실행 실행이 안되는 문제 발생 
+	ex) dpkg -i code_1.58.1-1626157156_arm64.deb (해당 버젼 실행 안되는 문제 발생함)
+	최신버젼 설치시 실행 실행이 안되는 문제 발생 아래 링크로 이전 버젼 다운 받아 설치 
 	https://update.code.visualstudio.com/1.50.1/linux-deb-arm64/stable
 	
 	
@@ -158,5 +159,7 @@
 	
 	
 	
-        ex) dpkg -i code_1.58.1-1626157156_arm64.deb
+	
+	
+        
 	
