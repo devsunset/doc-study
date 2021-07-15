@@ -137,14 +137,13 @@
    9-2. * apt install <program> 설치
         apt install ssh
         apt install firefox
+	apt install openjdk-11-jdk
 	apt install nodejs
 	apt install npm
 	apt install git
 	
 	
    9-3. * 다운로드 설치
-   
-   	
   	- vscode 
 	https://code.visualstudio.com/
 	Other platform > ARM64 버젼 deb 파일 다운로드 후 dpkg 명령어로 설치 
@@ -154,7 +153,7 @@
 	ex)https://update.code.visualstudio.com/1.50.1/linux-deb-arm64/stable
 	
 	- intellij
-	Linux tar.gz download
+	download (linux tar.gz)
 	https://www.jetbrains.com/ko-kr/idea/download/other.html 
 	
 	설치 폴더 생성
