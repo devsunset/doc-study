@@ -110,12 +110,18 @@
 
 8.connect bVNC
    localhost  5901
-   user_id  : ubuntu 계정
-   user_pw  : vncserver 패스 워드 설정한 값
- 
-9. Ubuntu 프로그램 설치 (arm 버젼으로 설치해야 함)
-   apt install <program>
+   user_id  : root 계정 (우분투 계정)
+   user_pw  : openbox 설치 중 설정 한 vncserver 패스워드 값
    
+   * 접속 후 cairo-dock 테마 변경 및 메뉴 구성 취향에 맞게 설정 
+   
+ 
+
+9. Ubuntu 기본 환경 설정 및 개발 프로그램 설치 (arm 버젼으로 설치해야 함)
+
+
+   apt install <program>
+
    
    --- 다운로드 설치 ---
    * go
