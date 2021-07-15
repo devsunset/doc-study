@@ -148,6 +148,11 @@
 	apt install npm
 	apt install git
 	
+	git 사용자 등록 
+	$ git config --global user.name "devsunset"
+	$ git config --global user.email devsunset@gmail.com
+	$ git config --list
+	
 	
    9-3. * 다운로드 설치
   	- vscode 
