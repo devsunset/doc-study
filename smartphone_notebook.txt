@@ -141,6 +141,11 @@
 	
 	
    9-3. * 다운로드 설치
-  	vscode 
+  	- vscode 
+	https://code.visualstudio.com/
+	Other platform > ARM64 버젼 deb 파일 다운로드 후 dpkg 명령어로 설치 
+        ex) dpkg -i code_1.58.1-1626157156_arm64.deb
+	
+
 
 
