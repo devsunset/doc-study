@@ -143,6 +143,8 @@
 	
 	
    9-3. * 다운로드 설치
+   
+   	
   	- vscode 
 	https://code.visualstudio.com/
 	Other platform > ARM64 버젼 deb 파일 다운로드 후 dpkg 명령어로 설치 
@@ -150,6 +152,19 @@
 	최신버젼 설치시 실행 실행이 안되는 문제 발생 아래 링크로 이전 버젼 다운 받아 설치 진행 
 	https://update.code.visualstudio.com/{version}/linux-deb-arm64/stable
 	ex)https://update.code.visualstudio.com/1.50.1/linux-deb-arm64/stable
+	
+	- intellij
+	Linux tar.gz download
+	https://www.jetbrains.com/ko-kr/idea/download/other.html 
+	
+	설치 폴더 생성
+	mkdir -p /workspace/program
+	다운로드 파일 /workspace/program 으로 이동 후 
+	tar -zxvf 설치파일   명령어로 압축 해제 후 압축 
+	해제 된 폴더/bin 으로 이동하여 idea.sh 실행
+	
+	
+	
 	
 	
 	
