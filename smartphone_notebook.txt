@@ -5,21 +5,25 @@
 1.Install Termux (google player)
 
 2.Setting Termux
-  https://wiki.termux.com/wiki/Termux-setup-storage
-  - 안드로이드 앱 설정 - termux 앱 권한 저장공간 허용 
-  Android 11
+  2-1. 안드로이드 앱 설정 - termux 앱 권한 저장공간 허용 
+        https://wiki.termux.com/wiki/Termux-setup-storage
+        Android 11
 	You may get "Permission denied" error when trying to access shared storage, even though the permission has been granted.
 	Workaround:
 	Go to Android Settings --> Applications --> Termux --> Permissions
 	Revoke Storage permission
 	Grant Storage permission again
 	
-  1. $ termux-setup-storage
+  2-2. $ termux-setup-storage
   
-  2. $ pkg update && pkg upgrade
+  2-3. $ pkg update && pkg upgrade
   
     위 명령어 실행 시  아래와 같은 에러 문구 출력되며 설치 되지 않는 경우 (android+7)
-    https://github.com/termux/termux-packages/issues/6726 내용 참고 하여 termux-change-repo 명령어로 repo 변경 
+    https://github.com/termux/termux-packages/issues/6726 내용 참고 하여 termux-change-repo 명령어로 repo 설정 
+    하거나 아래 명령어 실행하여 문제되는 repo 제거 - repo 설정 변경 추천 
+    pkg remove game-repo
+    pkg remove science-repo
+    pkg update 
     
     Err:5 https://dl.bintray.com/grimler/game-packages-24 games Release
 	  403  Forbidden
@@ -29,42 +33,34 @@
     
     참고 :pkg 명령어 사용법 -> https://admion.net/port-and-pkg/
     
-  3. $ termux-change-repo  
+  2-4. $ termux-change-repo  
   
-  4. $ pkg install vim
+  2-5. $ pkg install vim
   
-  5. $ pkg install openssh
+  2-6. $ pkg install openssh
   
-  6. 기타 필요한 프로그램 설치 - 우분투를 설치 하여 사용할 것이기 때문에 위 정 설정만 해주면 됨
+  2-7. 기타 필요한 프로그램 설치 - 우분투를 설치 하여 사용할 것이기 때문에 위 정 설정만 해주면 됨
       	
-3.mkdir ubuntu
-  - mkdir ubuntu
+3.Install Andronix (google player) 
 
-5.Install Andronix (google player) 
+4.Install bVNC: Secure VNC Viewer (google player)
 
-6.Install bVNC: Secure VNC Viewer (google player)
-
-7.Install ubuntu
-  - Termux execute
-  - cd ubuntu
-  - pkg update -y && pkg install curl proot tar -y && curl https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Ubuntu20/ubuntu20-xfce.sh | bash
+5.Install ubuntu
+  5-1. Termux execute
+  5-2. $ mkdir ubuntu  
+  5-3. $ cd ubuntu
+  5-4. $ pkg update -y && pkg install curl proot tar -y && curl https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Ubuntu20/ubuntu20-xfce.sh | bash
     (Andronix execute -> Ubuntu -> Install -> Ubuntu 20.04 -> XFCE : command copy)
-    
-    위의 명령어 실행시 저장소 관련 오류 발생 시 아래 명령어 실행 후 재 실행
-    pkg remove game-repo
-    pkg remove science-repo
-    pkg update 
-    
-8.Install Openbox
-  - Termux execute
-  - cd ubuntu
-  - pkg update -y && pkg install curl proot tar -y && curl https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Ubuntu20/ubuntu20-openbox.sh | bash
+        
+6.Install Openbox
+  6-1. Termux execute
+  6-2. $ cd ubuntu
+  6-3. $ pkg update -y && pkg install curl proot tar -y && curl https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Ubuntu20/ubuntu20-openbox.sh | bash
     (Andronix execute -> Ubuntu -> Install -> Ubuntu 20.04 -> Window Manager -> Openbox : command copy)
-  - ./start-ubuntu20.sh
-  - openbox.sh (chmod 755)
-  - ./openbox.sh
-   
-	cf) 설치 중 오류 발생 시 아래의 dns 정보 수정
+  6-4. $ ./start-ubuntu20.sh
+  6-5. # openbox.sh (chmod 755)
+  6-7. # ./openbox.sh
+   	cf) 설치 중 오류 발생 시 아래의 dns 정보 수정
 	    - dns setting
 	    - vi /etc/resolv.conf
 	    nameserver 1.1.1.1
@@ -72,7 +68,7 @@
 	    nameserver 8.8.4.4
   - 설치 종료 시점 vncserver 패스워드 설정
 
-9.vnc execute shll 
+7.vnc 접속
    - vncserver 해상도 설정
    - xrandr -s 1920x1080
    - vi vnc.sh
