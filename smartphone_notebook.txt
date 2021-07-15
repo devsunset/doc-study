@@ -4,7 +4,7 @@
 
 1.Install Termux (google player)
 
-2.Setting Termux-setup-storage &
+2.Setting Termux
   https://wiki.termux.com/wiki/Termux-setup-storage
   - 안드로이드 앱 설정 - termux 앱 권한 저장공간 허용 
   Android 11
@@ -14,9 +14,20 @@
 	Revoke Storage permission
 	Grant Storage permission again
 	
-  $ termux-setup-storage
+  1. $ termux-setup-storage
   
-  & pkg install vim
+  2. & pkg install vim
+  
+    vim 설치 시 아래와 같은 에러 문구 출력되며 설치 되지 않는 경우 
+    https://github.com/termux/termux-packages/issues/6726 내용 참고 하여 repo 변경 
+    
+    Err:5 https://dl.bintray.com/grimler/game-packages-24 games Release
+	  403  Forbidden
+    Err:6 https://dl.bintray.com/grimler/science-packages-24 science Release
+	  403  Forbidden
+    Reading package lists... Done
+    
+    
 	
 3.mkdir ubuntu
   - Termux execute
