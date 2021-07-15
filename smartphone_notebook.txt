@@ -174,8 +174,16 @@
 	설치 폴더 생성
 	mkdir -p /workspace/program
 	다운로드 파일 /workspace/program 으로 이동 후 
-	tar -zxvf 설치파일   명령어로 압축 해제 후 압축 
+	tar -zxvf 설치파일   명령어로 압축 해제 후
 	해제 된 폴더/bin 으로 이동하여 idea.sh 실행
+	
+	
+	- go
+	https://golang.org/dl/
+	arm 버젼 다운로드 다운르도 파일 /workspace/program 으로 이동 후 
+	tar -zxvf 설치파일   명령어로 압축 해제 
+	
+	
 	
 	
 	
