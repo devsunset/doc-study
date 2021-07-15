@@ -16,10 +16,10 @@
 	
   1. $ termux-setup-storage
   
-  2. & pkg install vim
+  2. $ pkg update && pkg upgrade
   
-    vim 설치 시 아래와 같은 에러 문구 출력되며 설치 되지 않는 경우 
-    https://github.com/termux/termux-packages/issues/6726 내용 참고 하여 repo 변경 
+    위 명령어 실행 시  아래와 같은 에러 문구 출력되며 설치 되지 않는 경우 (android+7)
+    https://github.com/termux/termux-packages/issues/6726 내용 참고 하여 termux-change-repo 명령어로 repo 변경 
     
     Err:5 https://dl.bintray.com/grimler/game-packages-24 games Release
 	  403  Forbidden
@@ -27,6 +27,11 @@
 	  403  Forbidden
     Reading package lists... Done
     
+  3. $ termux-change-repo  
+  
+  4. $ pkg install vim
+  
+  5. $ pkg install openssh
     
 	
 3.mkdir ubuntu
