@@ -14,7 +14,7 @@
 	Revoke Storage permission
 	Grant Storage permission again
 	
-  $ termux-storage-storage
+  $ termux-setup-storage
 	
 3.mkdir ubuntu
   - Termux execute
