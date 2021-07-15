@@ -139,6 +139,7 @@
         apt install firefox
 	apt install nodejs
 	apt install npm
+	apt install git
 	
 	
    9-3. * 다운로드 설치
