@@ -27,20 +27,18 @@
 	  403  Forbidden
     Reading package lists... Done
     
+    참고 :pkg 명령어 사용법 -> https://admion.net/port-and-pkg/
+    
   3. $ termux-change-repo  
   
   4. $ pkg install vim
   
   5. $ pkg install openssh
-    
-	
+  
+  6. 기타 필요한 프로그램 설치 - 우분투를 설치 하여 사용할 것이기 때문에 위 정 설정만 해주면 됨
+      	
 3.mkdir ubuntu
-  - Termux execute
   - mkdir ubuntu
-
-4.pkg command study & install vim
-  https://admion.net/port-and-pkg/
-  - pkg install vim
 
 5.Install Andronix (google player) 
 
