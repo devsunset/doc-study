@@ -45,14 +45,14 @@
 
 4.Install bVNC: Secure VNC Viewer (google player)
 
-5.Install ubuntu
+5.Install ubuntu (xface 기반 리눅스 설치)
   5-1. Termux execute
   5-2. $ mkdir ubuntu  
   5-3. $ cd ubuntu
   5-4. $ pkg update -y && pkg install curl proot tar -y && curl https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Ubuntu20/ubuntu20-xfce.sh | bash
     (Andronix execute -> Ubuntu -> Install -> Ubuntu 20.04 -> XFCE : command copy)
         
-6.Install Openbox
+6.Install Openbox (openbox 기반 리눅스 설치 -  openbox 방식 추천)
   6-1. Termux execute
   6-2. $ cd ubuntu
   6-3. $ pkg update -y && pkg install curl proot tar -y && curl https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Ubuntu20/ubuntu20-openbox.sh | bash
