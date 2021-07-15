@@ -67,30 +67,30 @@
 	    nameserver 8.8.8.8
 	    nameserver 8.8.4.4
   - 설치 종료 시점 vncserver 패스워드 설정
+  
+7. ubuntu vi 설치 및 .vnc 접속 환경 설정 
+   7-1. $ cd ubuntu
+   7-2. $ ./start-ubuntu20.sh
+   7-3. # apt update
+   7.4. # apt install vim
+   7-5. vncserver 해상도 설정 (접속 환경에 맞는 해상도로 조정)
+        $ xrandr -s 1920x1080
+   7-6. $ vi vnc.sh 파일 생성하여 아래 명령어 넣어 실행 권한 부여
+          vncserver-stop && vncserver-start
+          chmod 755 vnc.sh
+   7-7. $ ./vnc.sh (vnc 서비스 시작)   
+   	위와 같이 수동 실행 하거나 
+   	vi ~/.profile 파일 하단에 아래 구문 추가 하여 자동 실행 처리 
+   	vncserver-stop & vncserver-start 
 
-7.vnc 접속
-   - vncserver 해상도 설정
-   - xrandr -s 1920x1080
-   - vi vnc.sh
-    vncserver-stop && vncserver-start
-   - chmod 755 vnc.sh
-   - ./vnc.sh
-   
-   이미 vnc는 설치되어 있음 설치 안되어 있으면 아래 설치 구문으로 설치
-   apt-get install tigervnc-standalone-server
-   
-   위와 같이 개발 수동 실행 하거나 
-   vi ~/.profile 파일 하단에 아래 구문 추가 하여 자동 실행 처리 
-   vncserver-stop & vncserver-start 
-
-10.connect bVNC
+8.connect bVNC
    localhost  5901
-   user_id
-   user_pw
+   user_id  : ubuntu 계정
+   user_pw  : vncserver 패스 워드 설정한 값
  
-11.Install program (arm version)
+9. Ubuntu 프로그램 설치 (arm 버젼으로 설치해야 함)
    apt install <program>
-   	nodjs   
+   
    
    --- 다운로드 설치 ---
    * go
