@@ -132,6 +132,8 @@
 	TZ='Asia/Seoul'; export TZ
 	
 	우분투 20에서 zsh 설정하고 oh my zsh 설치하기
+	https://jkim83.tistory.com/136
+	
 	sudo passwd 명령어로 패스워드 우선 설정 
 	$ sudo apt install zsh -y && chsh -s `which zsh`	
 	chsh:PAM authentication failed 오류 발생시 해결방법
@@ -141,6 +143,19 @@
 	로그아웃, 로그인
 	oh-my-zsh 설치
 	$ curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+	
+	agnoster 테마변경
+	테마를 robbyrussell -> agnoster로 수정
+	$ sudo vim ~/.zshrc
+	 as-is
+	 ZSH_THEME="robbyrussell" 
+	 to-be
+	 ZSH_THEME="agnoster"
+
+	 터미널 글자가 깨지는 경우는  powserline 설치 
+	 $ git clone https://github.com/powerline/fonts.git
+	$ cd fonts
+	$ ./install.sh
 
    
    9-1. 한글 지원 폰트 설치 - 글꼴 설치 한다고 한글입력 처리등이 되지는 않음 (한글 적용 시도 했지만 적용이 안됨 - 문제점)
