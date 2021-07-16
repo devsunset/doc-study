@@ -149,6 +149,7 @@
 	
    9-2. * apt install <program> 설치
         apt install ssh
+	
         apt install firefox
 	apt install openjdk-11-jdk
 	apt install nodejs
