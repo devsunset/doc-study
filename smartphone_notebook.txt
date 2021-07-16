@@ -113,16 +113,13 @@
 	#dbus-launch cairo-dock  (주석처리)
 	feh --bg-fill /usr/share/wallpaper.jpg
 	
-
 8.connect bVNC
    localhost  5901
    user_id  : root 계정 (우분투 계정)
    user_pw  : openbox 설치 중 설정 한 vncserver 패스워드 값
    
    * 접속 후 cairo-dock 테마 변경 및 메뉴 구성 취향에 맞게 설정 
-   
- 
-
+    
 9. Ubuntu 기본 환경 설정 및 개발 프로그램 설치 (arm 버젼으로 설치해야 함)
    9-0. .bashrc 파일에 아래 내용 추가 
         $ vi ~/.bashrc
@@ -131,6 +128,7 @@
 	alias pip=pip3
 	TZ='Asia/Seoul'; export TZ
 	
+	(선택사항)
 	우분투 20에서 zsh 설정하고 oh my zsh 설치하기
 	https://jkim83.tistory.com/136
 	
@@ -156,7 +154,14 @@
 	 $ git clone https://github.com/powerline/fonts.git
 	$ cd fonts
 	$ ./install.sh
-
+	
+	zsh 사용 할 경우 아래 내용 추가 처리 
+	$ sudo sudo vim ~/.zshrc
+	alias cls='clear'
+	alias python='python3'
+	alias pip=pip3
+	TZ='Asia/Seoul'; export TZ
+	
    
    9-1. 한글 지원 폰트 설치 - 글꼴 설치 한다고 한글입력 처리등이 되지는 않음 (한글 적용 시도 했지만 적용이 안됨 - 문제점)
         * 나눔글꼴 설치
@@ -221,23 +226,6 @@
 		/etc/profile 파일에 설정 하도록 함
 	export PATH=$PATH:/usr/local/go/bin
 	go version	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
         
 	
