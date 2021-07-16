@@ -130,6 +130,17 @@
 	alias python='python3'
 	alias pip=pip3
 	TZ='Asia/Seoul'; export TZ
+	
+	우분투 20에서 zsh 설정하고 oh my zsh 설치하기
+	sudo passwd 명령어로 패스워드 우선 설정 
+	$ sudo apt install zsh -y && chsh -s `which zsh`	
+	chsh:PAM authentication failed 오류 발생시 해결방법
+	$ sudo vim /etc/pam.d/chsh
+	auth required pam_shells.so 주석처리
+	sudo chsh $USER -s $(which zsh)
+	로그아웃, 로그인
+	oh-my-zsh 설치
+	$ curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 
    
    9-1. 한글 지원 폰트 설치 - 글꼴 설치 한다고 한글입력 처리등이 되지는 않음 (한글 적용 시도 했지만 적용이 안됨 - 문제점)
