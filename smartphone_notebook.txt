@@ -178,6 +178,32 @@
 	* OpenBox Configuration Manager 창 실행 후 
 	Appearance 탭 선택 후 글꼴 모두 D2Coding 으로 설정 	
 	
+	
+	* 한글 설정 (아쉽게도 100%로 지원은 안되는 듯 함)
+	Application - Settings - ISus Preferences 실행	
+	General 탭에서 
+	Keyboard Shortcuts 에서 <Ctrl><Shift>space 설정 
+	Use custom fonts 선택 하고 글꼴을 D2Coding Regular 선택
+		혹시 해당 폰트 설정 후 안된다면 아래의 명령어로 폰트 설치 후 
+		$ sudo apt install fonts-nanum fonts-nanum-extra fonts-nanum-coding ibus-hangul
+		NanumBarunGothic Regular 폰트로 설정 합니다
+		
+	Input Method 탭을 누르고 Add 버튼을 누르면 언어 리스트가 뜨는데 여기서 Korean 을 선택하고 다시
+	Hangul을 선택 한 후 Add 버튼을 누르면 Input Method 에 Korean - Hangul 이 추가 됩니다.
+	기존에 있던 English - English (US) 는 삭제 합니다.
+	
+	terminal 에서 아래 명령어 실행 
+	$ ibus-setup-hangul
+	Hangul toggle key 항목에 Add버튼을 누른 후 Control + Alt + space 키를 눌러 한영 전환키를 추가 합니다.
+	(중요 - 실제 전환은 Control+Alt+spce 로 동작이됨 위에서 설정한 Keyboard Shortcuts로 안됨 동일한 값으로 설정하면 동작 안함 ㅠㅠ)
+	
+	IBus daemon 자동 실행 설정
+	ibus-daemon 이 자동으로 실행되도록 .bashrc or .zshrc 파일에 아래 내용을 추가 해 줍니다.
+	ibus-daemon -drx
+	
+	(위와 같이 설정시 한글설정된 firefox , terminal 등에서 정상 동작함)
+	chromium 이나 vscode 등 에서 동작 안함 100% 되지는 않는듯 함 우선 일부라도 된다는 거에 만족 혹시 완벽한 방법 찾으면 내용 수정 하겠음	
+		
    9-2. * apt install <program> 설치
         apt install ssh
 	
