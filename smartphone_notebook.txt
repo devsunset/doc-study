@@ -155,9 +155,10 @@
 	apt install npm
 	apt install git
 	
-	git 사용자 등록 
+	git 사용자 등록 및 인증정보 자동 저장
 	$ git config --global user.name "devsunset"
 	$ git config --global user.email devsunset@gmail.com
+	$ git config --global credential.helper store
 	$ git config --list
 	
 	
