@@ -182,6 +182,7 @@
         apt install ssh
 	
         apt install firefox
+	apt-get install libreoffice
 	apt install openjdk-11-jdk
 	sudo apt install python3-pip  (python3는 기본 설치 되어 있으나 pip3는 설치 안되어 있음으로 설치)
 	apt install nodejs
