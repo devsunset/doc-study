@@ -201,10 +201,12 @@
 	~/.vnc/xstartup 파일에 아래 내용을 추가 해 줍니다.
 	ibus-daemon -drx
 	
+	terminal 글꼴도 D2Coding Regular로 설정 
+	
 	(위와 같이 설정 시 한글 설정된 firefox , terminal 등에서 정상 동작함)
 	chromium ,vscode ,intellj 등 에서 동작 안함 100% 되지는 않는듯 함 
-	우선 일부라도 된다는 거에 만족 혹시 완벽한 방법 찾으면 내용 수정 하겠음	
-		
+	우선 일부라도 된다는 거에 만족 혹시 완벽한 방법 찾으면 내용 수정 하겠음
+			
    9-2. * apt install <program> 설치
         apt install ssh
 	
@@ -221,8 +223,7 @@
 	$ git config --global user.email devsunset@gmail.com
 	$ git config --global credential.helper store
 	$ git config --list
-	
-	
+		
    9-3. * 다운로드 설치
   	- vscode 
 	https://code.visualstudio.com/
