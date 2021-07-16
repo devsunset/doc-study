@@ -198,11 +198,12 @@
 	(중요 - 실제 전환은 Control+Alt+spce 로 동작이됨 위에서 설정한 Keyboard Shortcuts로 안됨 동일한 값으로 설정하면 동작 안함 ㅠㅠ)
 	
 	IBus daemon 자동 실행 설정
-	ibus-daemon 이 자동으로 실행되도록 .bashrc or .zshrc 파일에 아래 내용을 추가 해 줍니다.
+	~/.vnc/xstartup 파일에 아래 내용을 추가 해 줍니다.
 	ibus-daemon -drx
 	
-	(위와 같이 설정시 한글설정된 firefox , terminal 등에서 정상 동작함)
-	chromium 이나 vscode 등 에서 동작 안함 100% 되지는 않는듯 함 우선 일부라도 된다는 거에 만족 혹시 완벽한 방법 찾으면 내용 수정 하겠음	
+	(위와 같이 설정 시 한글 설정된 firefox , terminal 등에서 정상 동작함)
+	chromium ,vscode ,intellj 등 에서 동작 안함 100% 되지는 않는듯 함 
+	우선 일부라도 된다는 거에 만족 혹시 완벽한 방법 찾으면 내용 수정 하겠음	
 		
    9-2. * apt install <program> 설치
         apt install ssh
