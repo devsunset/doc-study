@@ -192,12 +192,9 @@
 	https://golang.org/doc/install
 	
 	rm -rf /usr/local/go && tar -C /usr/local -xzf 다운받은파일명
-
-	You can do this by adding the following line to your $HOME/.profile or /etc/profile (for a system-wide installation):
-
+		You can do this by adding the following line to your $HOME/.profile or /etc/profile (for a system-wide installation):
 	export PATH=$PATH:/usr/local/go/bin
-	
-	$ go version	
+	go version	
 	
 	
 	
