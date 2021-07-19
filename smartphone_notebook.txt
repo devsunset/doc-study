@@ -13,7 +13,7 @@
 	Go to Android Settings --> Applications --> Termux --> Permissions
 	Revoke Storage permission
 	Grant Storage permission again
-	
+		
   2-2. $ termux-setup-storage
   
   2-3. $ pkg update && pkg upgrade
@@ -40,6 +40,11 @@
   2-6. $ pkg install openssh
   
   2-7. 기타 필요한 프로그램 설치 - 우분투를 설치 하여 사용할 것이기 때문에 위 정 설정만 해주면 됨
+  
+  2-8. Termux에서 Backspace 키를 누를때 진동 없애기 
+       .inputrc 파일 생성하고 set bell-style none 구문을 입력 하고 저장 재 실행 후 테스트
+       vi ~/.inputrc
+       set bell-style none
       	
 3.Install Andronix (google player) 
 
