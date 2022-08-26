@@ -51,6 +51,22 @@ sudo apt install nodejs
 - npm 
 sudo apt install npm
 
+- nvm 
+sudo curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+
+vi ~/.bash_profile
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+source ~/.bash_profile
+
+nvm ls
+
+- yarn
+npm install --global yarn
+
+
 - go
 wget https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
 tar -C /usr/local -xzf go1.16.linux-amd64.tar.gz
@@ -339,4 +355,7 @@ $ sudo git pull
 
 * git 상태 확인
 $ git status
+
+
+
 
