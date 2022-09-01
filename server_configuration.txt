@@ -61,10 +61,11 @@ nvm ls
 npm install --global yarn
 
 - nodejs
-sudo apt install nodejs
+nvm install --lts
+#sudo apt install nodejs
 
 - npm 
-sudo apt install npm
+#sudo apt install npm
 
 
 - go
