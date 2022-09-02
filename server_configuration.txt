@@ -125,7 +125,7 @@ pip install --upgrade pip
 	 {
 	 user: "superadmin",
 	 pwd: "ahqkdlf12#",
-	 roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+	 roles: [ { role: "root", db: "admin" } ]
 	 })
 
 * redis
