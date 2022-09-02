@@ -113,7 +113,20 @@ pip install --upgrade pip
   $ docker run --restart=always --name mariadb -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=ahqkdlf12# -v /workspace/app/mariadb:/var/lib/mysql/ mariadb
 
 * mongo
-  $ docker run -d -p 27017:27017 --name mongo -v /workspace/app/mongo/db:/data/db  mongo
+  $ docker run -d -p 27017:27017 --name mongo -v /workspace/app/mongo/db:/data/db  mongo --auth
+  
+  	docker exec -it mongodb /bin/bash
+	
+	mongosh
+
+	use admin
+
+	db.createUser(
+	 {
+	 user: "superadmin",
+	 pwd: "ahqkdlf12#",
+	 roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+	 })
 
 * redis
   $ docker run -d -p 6379:6379 --name redis -v /workspace/app/redis/data:/data redis --appendonly yes
