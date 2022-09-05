@@ -160,6 +160,7 @@ $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 5432 -m state --state NEW,ESTA
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 3306 -m state --state NEW,ESTABLISHED -j ACCEPT
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 27017 -m state --state NEW,ESTABLISHED -j ACCEPT
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 6739 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 4000 -m state --state NEW,ESTABLISHED -j ACCEPT
 
 $ sudo iptables--list
 
