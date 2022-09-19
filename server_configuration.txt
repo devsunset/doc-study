@@ -100,6 +100,9 @@ pip install --upgrade pip
 ------------------------------------------------------------
 # docker app install 
 
+* apache
+  $ docker run -d -p 80:80 -v /workspace/app/apache/htdocs:/usr/local/apache2/htdocs --name=apache httpd
+
 * nginx
   $ docker run -d -p 80:80 -v /workspace/app/nginx/conf:/etc/nginx/conf.d:ro -v /workspace/app/nginx/www:/usr/share/nginx/html --name nginx  nginx
 
