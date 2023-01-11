@@ -4,107 +4,130 @@
 
 ############################################################
 
-############################################################
-# DIRECTORY CREATE
+#############################
+# BASIC SETTING 
 
-sudo -
+# password 생성 
+- root
+$ sudo passwd 
+- ubuntu
+$ sudo passwd ubuntu
 
--- make directory 
-mkdir -p /workspace/app 
-mkdir -p /workspace/devwork 
-mkdir -p /workspace/doc 
-mkdir -p /workspace/storge 
-mkdir -p /workspace/temp 
+# make directory 
+$ sudo mkdir -p /workspace/app 
+$ sudo mkdir -p /workspace/devwork 
+$ sudo mkdir -p /workspace/doc 
+$ sudo mkdir -p /workspace/storge 
+$ sudo mkdir -p /workspace/temp 
 
 -- root -> ubuntu
-sudo chown ubuntu:ubuntu /workspace 
+$ sudo chown -R  ubuntu:ubuntu /workspace 
 
-############################################################
-# SERVER SETTING 
+# .bashrc alias 
+$ vi ~/.bashrc
+  # Add Config 
+  alias cls=clear
+  alias python=python3
+  alias pip=pip3
+
+  $ source .bashrc
 
 # TimeZone Change
-sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+$ sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 
 * root , user
-  ~/.bashrc
+  $ vi ~/.bashrc
   TZ='Asia/Seoul'; export TZ 
-
-  source .bashrc
-
+  $ source .bashrc
 
 # Vim set number
-~/.vimrc
-
+  $ vi ~/.vimrc
   set number 
   
-############################################################
+#############################
 # INSTALL PROGRAM
 
-sudo apt update && sudo apt upgrade
+$ sudo apt update && sudo apt upgrade
 
 - java
-sudo apt install openjdk-11-jdk-headless
+$ sudo apt install openjdk-11-jdk-headless
 
 - nvm 
-sudo curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+$ sudo curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
 
-vi ~/.bash_profile
+vi ~/.bashrc
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+source ~/.bashrc
 
-source ~/.bash_profile
+$ nvm ls
 
-nvm ls
+- nodejs & npm 
+$ nvm install --lts
+
+  (nvm 설치로 아래 내용 대체)
+  - nodejs
+  #sudo apt install nodejs
+  - npm 
+  #sudo apt install npm
 
 - yarn
-npm install --global yarn
-
-- nodejs
-nvm install --lts
-#sudo apt install nodejs
-
-- npm 
-#sudo apt install npm
-
+$ npm install --global yarn
 
 - go
-wget https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
-tar -C /usr/local -xzf go1.16.linux-amd64.tar.gz
+$ wget https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
+$ sudo tar -C /usr/local -xzf go1.16.2.linux-amd64.tar.gz
 
-~/.profile
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=/workspace/program/go
+  vi ~/.profile
+  export PATH=$PATH:/usr/local/go/bin
+  export GOPATH=/workspace/program/go
 
 - docker
-sudo apt install docker.io
+$ sudo apt install docker.io
 
-*general user docker execute role apply 
-sudo usermod -a -G docker ubuntu
+  * general user docker execute role apply 
+  $ sudo usermod -a -G docker ubuntu
 
 - git 
-sudo git config --global user.name "devsunset"
-sudo git config --global user.email "devsunset@gmail.com"
+$ sudo apt-get install git-core
 
-- python venv
-apt-get update
-apt-get install python3-venv
-cd /workspace/devwork
-python3 -m venv venv
-source /workspace/devwork/venv/bin/activate
-pip install --upgrade pip
+  * git setting 
+  $ sudo git config --global user.name "계정"
+  $ sudo git config --global user.email "메일 주소"
 
-- cockpit 
-https://cockpit-project.org/
+  $ sudo git config --global user.name "devsunset"
+  $ sudo git config --global user.email "devsunset@gmail.com"
+  $ sudo git config --global color.ui"auto"
 
-. /etc/os-release
-sudo apt install -t ${VERSION_CODENAME}-backports cockpit
+  $ vi ~/.gitconfig
+  [credential]
+  helper = store
+  [user]
+    name = devsunset
+    email = devsunset@gmail.com
 
-############################################################
-# APP SETTING
+  $ vi ~/.git-credentials 
+  https://devsunset:git_token_v@github.com
+
+- python (pip3 venv)
+$ sudo apt install python3-pip
+$ sudo apt-get install python3-venv
+
+- cockpit (https://cockpit-project.org/)
+$ sudo apt install -t ${VERSION_CODENAME}-backports cockpit
+  VERSION_CODENAME값은 /etc/os-release 파일에서 확인 
+
+#############################
+# DOCKER SETTING
 
 ------------------------------------------------------------
 # docker app install 
+
+  * docker vim install
+    docker exec -it container_name /bin/bash
+    apt update
+    apt install vim
 
 * apache
   $ docker run -d -p 80:80 -v /workspace/app/apache/htdocs:/usr/local/apache2/htdocs --name=apache httpd
@@ -112,19 +135,36 @@ sudo apt install -t ${VERSION_CODENAME}-backports cockpit
 * nginx
   $ docker run -d -p 80:80 -v /workspace/app/nginx/conf:/etc/nginx/conf.d:ro -v /workspace/app/nginx/www:/usr/share/nginx/html --name nginx  nginx
 
-* tomcat
-  $ docker run -d -p 8080:8080 --name tomcat tomcat 
+* mariadb
+  $ docker run --restart=always --name mariadb -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=PASSWORD -v /workspace/app/mariadb:/var/lib/mysql/ mariadb
+
+  * mariadb docker shell 접속
+  $ docker exec -it mariadb /bin/bash
+  # mysql -u root -p
+  select now();
+  set global time_zone = 'Asia/Seoul';
+  set time_zone = 'Asia/Seoul';
+  select now();
 
 * postgres
-  $ docker run -d -p 5432:5432 --name postgres -v /workspace/app/postgres/pgdata:/var/lib/postgresql/data postgres
+  $ docker run -d -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=PASSWORD -v /workspace/app/postgres/pgdata:/var/lib/postgresql/data postgres
 
-* mariadb
-  $ docker run --restart=always --name mariadb -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=ahqkdlf12# -v /workspace/app/mariadb:/var/lib/mysql/ mariadb
+  * postgres docker shll 접속 
+  $ docker exec -it postgres /bin/bash
+
+  * psql 명령 실행 
+  psql --username=postgres --dbname=postgres
+
+  CREATE ROLE sample LOGIN CREATEDB PASSWORD 'PASSWORD';
+  \du
+
+  CREATE DATABASE sample OWNER sample;
+  \l
 
 * mongo
   $ docker run -d -p 27017:27017 --name mongo -v /workspace/app/mongo/db:/data/db  mongo --auth
   
-  	docker exec -it mongodb /bin/bash
+  $ docker exec -it mongo /bin/bash
 	
 	mongosh
 
@@ -133,41 +173,39 @@ sudo apt install -t ${VERSION_CODENAME}-backports cockpit
 	db.createUser(
 	 {
 	 user: "superadmin",
-	 pwd: "ahqkdlf12#",
+	 pwd: "PASSWORD",
 	 roles: [ { role: "root", db: "admin" } ]
 	 })
 
 * redis
   $ docker run -d -p 6379:6379 --name redis -v /workspace/app/redis/data:/data redis --appendonly yes
 
-* jenkins
-  $ docker run -u 0 -d -p 8181:8080 --name jenkins -v /workspace/app/jenkins:/var/jenkins_home -e JAVA_OPTS='-Duser.timezone=Asia/Seoul -Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8' jenkins/jenkins:lts
+  #* tomcat
+  #$ docker run -d -p 8080:8080 --name tomcat tomcat 
+
+  #* jenkins
+  #$ docker run -u 0 -d -p 8181:8080 --name jenkins -v /workspace/app/jenkins:/var/jenkins_home -e JAVA_OPTS='-Duser.timezone=Asia/Seoul #-Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8' jenkins/jenkins:lts
 
 	#* sonarqube (not use - reson : memory 2G)
-	#  $ docker run -d -p 9000:9000 -p 9032:9032 --name sonarqube sonarqube
-
-  * docker vim install
-  docker exec -it container_name /bin/bash
-  apt update
-  apt install vim
+	#$ docker run -d -p 9000:9000 -p 9032:9032 --name sonarqube sonarqube
 
 ------------------------------------------------------------
 # firewall 
 
-oracle cloud - firewall port setting 
+* oracle cloud - firewall port setting 
 
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 3306 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 4000 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 6739 -m state --state NEW,ESTABLISHED -j ACCEPT
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 8080 -m state --state NEW,ESTABLISHED -j ACCEPT
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 8181 -m state --state NEW,ESTABLISHED -j ACCEPT
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 8282 -m state --state NEW,ESTABLISHED -j ACCEPT
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 8383 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 5432 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 3306 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 27017 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 6739 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 4000 -m state --state NEW,ESTABLISHED -j ACCEPT
 $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 9090 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 5432 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 27017 -m state --state NEW,ESTABLISHED -j ACCEPT
 
 $ sudo iptables--list
 
@@ -178,206 +216,3 @@ $ sudo iptables--list
   $ sudo netfilter-persistent save
   ③ 방화벽 정책을  다시 로드: 
   $ sudo netfilter-persistent start
-
-------------------------------------------------------------
-# app setting
-
-* postgres docker shll 접속 
-$ docker exec -it postgres /bin/bash
-
-* psql 명령 실행 
-psql --username=postgres --dbname=postgres
-
-\du
-CREATE ROLE teslapsql LOGIN CREATEDB PASSWORD 'ahqkdlf12#';
-
-CREATE DATABASE teslapsql OWNER teslapsql;
-\l
-
-\du
-CREATE ROLE redmine  LOGIN CREATEDB PASSWORD 'ahqkdlf12#';
-
-CREATE DATABASE redmine OWNER redmine;
-\l
-
-* mariadb docker shell 접속
-$ docker exec -it mariadb /bin/bash
-# mysql -u root -p
-select now();
-set global time_zone = 'Asia/Seoul';
-set time_zone = 'Asia/Seoul';
-
-########################################################
-
-	docker 
-	
-########################################################
-https://www.docker.com/
-https://hub.docker.com/
-
-docker info
-
-docker version
-
-docker run hello-world
-
-docker search image_name
-
-docker images [OPTIONS] [REPOSITORY[:TAG]]
-docker pull image_name:latest
-
-docker images [OPTIONS] [REPOSITORY[:TAG]]
-docker images
-
-docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
--d      detached mode 흔히 말하는 백그라운드 모드
--p      호스트와 컨테이너의 포트를 연결 (포워딩)
--v      호스트와 컨테이너의 디렉토리를 연결 (마운트)
--e      컨테이너 내에서 사용할 환경변수 설정
-–name   컨테이너 이름 설정
-–rm     프로세스 종료시 컨테이너 자동 제거
--it     -i와 -t를 동시에 사용한 것으로 터미널 입력을 위한 옵션
-–link   컨테이너 연결 [컨테이너명:별칭]
-
-docker ps [OPTIONS]
-docker ps -a
-
-docker start [OPTIONS] CONTAINER [CONTAINER...]
-docker restart [OPTIONS] CONTAINER [CONTAINER...]
-docker stop [OPTIONS] CONTAINER [CONTAINER...]
-docker attach [OPTIONS] CONTAINER [CONTAINER...]
-
-docker rm [OPTIONS] CONTAINER [CONTAINER...]
-docker rm -v $(docker ps -a -q -f status=exited)
-
-docker rmi [OPTIONS] IMAGE [IMAGE...]
-
-docker logs [OPTIONS] CONTAINER
-docker logs --tail 10 ${WORDPRESS_CONTAINER_ID}
-
-docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
-docker exec -it mysql /bin/bash
-
-
-########################################################
-
-#  도커 버전 확인
-docker -v
-
-#  도커 이미지 다운만 받기
-docker pull {이미지명}:{태그}
-# 예: docker pull python:3
-
-#  컴퓨터 내 도커 이미지들 보기
-docker images
-
-# 이미지로 컨테이너 생성하기
-docker create {옵션} {이미지명}:{태그}
-# 예: docker create -it python
-
-# 만들어진 컨테이너 시작하기 (이미지에 CMD로 지정해놓은 작업 시키기)
-docker start {컨테이너 id 또는 이름}
-
-# 컨테이너로 들어가기 (컨테이너 내 CLI 이용하기)
-docker attach {컨테이너 id 또는 이름}
-
-# 이미지를 다운받아(없을 시에만) 바로 컨테이너 실행하여 진입하기
-docker run {이미지명}:{태그}
-# 예: docker -it run python:3
-* pull, create, start, attach 를 한꺼번에 실행하는 것과 같습니다.
-옵션	설명
--d	데몬으로 실행(뒤에서 - 안 보이는 곳(백그라운드)에서 알아서 돌라고 하기)
--it	컨테이너로 들어갔을 때 bash로 CLI 입출력을 사용할 수 있도록 해 줍니다.
---name {이름}	컨테이너 이름 지정
--p {호스트의 포트 번호}:{컨테이너의 포트 번호}	호스트와 컨테이너의 포트를 연결합니다.
---rm	컨테이너가 종료되면{내부에서 돌아가는 작업이 끝나면} 컨테이너를 제거합니다.
--v {호스트의 디렉토리}:{컨테이너의 디렉토리}	호스트와 컨테이너의 디렉토리를 연결합니다.
-
-# 동작중인 컨테이너 재시작
-docker restart {컨테이너 id 또는 이름}
-
-# 도커 컨테이너의 내부 쉘에서 빠져나오기 (컨테이너를 종료)
-exit
-* 또는 Ctrl + D
-
-# 도커 컨테이너의 내부 쉘에서 빠져나오기 (컨테이너를 종료하지 않음)
-* Ctrl + P, Q
-
-# (동작중인) 컨테이너들 보기
-docker ps
-* 동작중이 아닌 것을 포함한 모든 컨테이너를 보려면 -a 옵션을 뒤에 붙입니다.
-
-# 컨테이너 삭제
-docker rm {컨테이너 id 또는 이름}
-
-# 모든 컨테이너 삭제
-docker rm `docker ps -a -q`
-
-# 이미지 삭제
-docker rmi {옵션} {이미지 id}
-* 컨테이너가 있을 시 강제삭제: -f 옵션 사용
-
-# 모든 컨테이너 중지
-docker stop $(docker ps -aq)
-
-# 사용되지 않는 모든 도커 요소(컨테이너, 이미지, 네트워크, 볼륨 등) 삭제
-docker system prune -a
-
-# 아래를 복붙하여 함께 실행하면 편리합니다.
-docker stop $(docker ps -aq)
-docker system prune -a
-* 확인 질문에 y로 답하고 마무리합니다.
-
-도커파일로 이미지 생성
-# Dockerfile 파일이 있는 디렉토리 기준.  마지막의 . 이 상대주소
-docker build -t {이미지명} .
-
-도커 컴포즈 실행
-# docker-compose 파일이 있는 디렉토리 기준
-docker-compose up
-* 백그라운드에서 데몬으로 돌도록 하려면 -d 옵션
-
-########################################################
-
-	Git & Github 
-	
-########################################################
-
-* git 설치
-$ sudo apt-get install git-core
-
-* git 개인 정보 등록
-$ sudo git config --global user.name "계정"
-$ sudo git config --global user.email "메일 주소"
-$ sudo git config --global color.ui "auto"
-
-* 작업 폴더 생성
-$ sudo mkdir /workspace/app/
-$cd /workspace/app
-
-* github 저장소 복제
-$ sudo git clone https://github.com/devsunset/apiServer.git
-
-* 원격 저장소 등록
-$ cd /workspace/app/apiServer
-$ sudo git remote add origin https://github.com/devsunset/apiServer.git
-$ sudo git fetch origin
-
-* 변경된 모든 파일 추가
-$ sudo git add -A
-
-* commit 입력후 엔터 치고 변경목록이 보이면 Ctrl+o 그리고 엔터 그리고 Ctrl+x 종료한다.
-$ sudo git commit -m "메세지입력"
-
-* 저장소에 올리기 (계정과 암호 물어보면 입력)
-$ sudo git push
-
-*저장소 업데이트 (내려받기)
-$ sudo git pull
-
-* git 상태 확인
-$ git status
-
-
-
-
