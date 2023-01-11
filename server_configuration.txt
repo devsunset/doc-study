@@ -172,7 +172,7 @@ $ sudo apt install -t ${VERSION_CODENAME}-backports cockpit
 
 	db.createUser(
 	 {
-	 user: "superadmin",
+	 user: "devsunset",
 	 pwd: "PASSWORD",
 	 roles: [ { role: "root", db: "admin" } ]
 	 })
