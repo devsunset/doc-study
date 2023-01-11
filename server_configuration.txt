@@ -66,6 +66,10 @@ $ nvm ls
 - nodejs & npm 
 $ nvm install --lts
 
+$ nvm alias default lts/gallium
+
+$ nvm use lts/gallium
+
   (nvm 설치로 아래 내용 대체)
   - nodejs
   #sudo apt install nodejs
