@@ -184,34 +184,38 @@ $ sudo apt install -t ${VERSION_CODENAME}-backports cockpit
 * redis
   $ docker run -d -p 6379:6379 --name redis -v /workspace/app/redis/data:/data redis --appendonly yes
 
-  #* tomcat
-  #$ docker run -d -p 8080:8080 --name tomcat tomcat 
 
-  #* jenkins
-  #$ docker run -u 0 -d -p 8181:8080 --name jenkins -v /workspace/app/jenkins:/var/jenkins_home -e JAVA_OPTS='-Duser.timezone=Asia/Seoul #-Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8' jenkins/jenkins:lts
+# skip 
 
-	#* sonarqube (not use - reson : memory 2G)
-	#$ docker run -d -p 9000:9000 -p 9032:9032 --name sonarqube sonarqube
+      #* tomcat
+      #$ docker run -d -p 8080:8080 --name tomcat tomcat 
+
+      #* jenkins
+      #$ docker run -u 0 -d -p 8181:8080 --name jenkins -v /workspace/app/jenkins:/var/jenkins_home -e JAVA_OPTS='-Duser.timezone=Asia/Seoul #-Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8' jenkins/jenkins:lts
+
+      #* sonarqube (not use - reson : memory 2G)
+      #$ docker run -d -p 9000:9000 -p 9032:9032 --name sonarqube sonarqube
 
 ------------------------------------------------------------
 # firewall 
 
 * oracle cloud - firewall port setting 
 
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 3306 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 4000 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 6739 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 8080 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 8181 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 8282 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 8383 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 9090 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 5432 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 27017 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 3306 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 4000 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 6739 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 8080 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 8181 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 8282 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 8383 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 9090 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 5432 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 27017 -m state --state NEW,ESTABLISHED -j ACCEPT
 
-$ sudo iptables--list
+
+$ sudo iptables --list
 
 * 재부팅 후에도 방화벽 정책 유지 
   ① 패키지 설치: 

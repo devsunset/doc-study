@@ -10,8 +10,8 @@
 # password 생성 
 - root
 $ sudo passwd 
-- ubuntu
-$ sudo passwd ubuntu
+- rocky
+$ sudo passwd rocky
 
 # make directory 
 $ sudo mkdir -p /workspace/app 
@@ -20,8 +20,8 @@ $ sudo mkdir -p /workspace/doc
 $ sudo mkdir -p /workspace/storge 
 $ sudo mkdir -p /workspace/temp 
 
--- root -> ubuntu
-$ sudo chown -R  ubuntu:ubuntu /workspace 
+-- root -> rocky
+$ sudo chown -R  rocky:rocky /workspace 
 
 # .bashrc alias 
 $ vi ~/.bashrc
@@ -47,10 +47,10 @@ $ sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 #############################
 # INSTALL PROGRAM
 
-$ sudo apt update && sudo apt upgrade
+$ sudo yum upgrade
 
 - java
-$ sudo apt install openjdk-11-jdk-headless
+$ sudo yum install openjdk-11-jdk-headless
 
 - nvm 
 $ sudo curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
@@ -72,9 +72,9 @@ $ nvm use lts/gallium
 
   (nvm 설치로 아래 내용 대체)
   - nodejs
-  #sudo apt install nodejs
+  #sudo yum install nodejs
   - npm 
-  #sudo apt install npm
+  #sudo yum install npm
 
 - yarn
 $ npm install --global yarn
@@ -83,18 +83,50 @@ $ npm install --global yarn
 $ wget https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
 $ sudo tar -C /usr/local -xzf go1.16.2.linux-amd64.tar.gz
 
-  vi ~/.profile
+  vi ~/.bashrc
   export PATH=$PATH:/usr/local/go/bin
   export GOPATH=/workspace/program/go
 
-- docker
-$ sudo apt install docker.io
+source ~/.bashrc
 
-  * general user docker execute role apply 
-  $ sudo usermod -a -G docker ubuntu
+- docker
+# yum-utiles 패키지 설치
+sudo yum -y update
+sudo yum install -y yum-utils
+
+# repository 설정
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+# 최신 버전의 Docker Engine 설치
+# sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+    # 특정 버전의 Docker Engine 설치
+    # 설치 가능한 버전 목록 확인 (현재 최신 버전 23.0.1)
+    # yum list docker-ce --showduplicates | sort -r
+    version='23.0.1'
+    sudo yum install -y docker-ce-${version} docker-ce-cli-${version} containerd.io docker-buildx-plugin docker-compose-plugin
+
+
+# docker 그룹 생성 (Docker 설치 시 자동으로 생성되어있을 수 있음)
+sudo groupadd docker
+
+# docker 그룹에 사용자 추가
+sudo usermod -aG docker $USER
+
+# 그룹 변경 사항 활성화
+newgrp docker
+
+# systemctl 명령어를 사용하여 부팅 시 docker가 자동으로 실행되도록 설정 가능
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
+
+# 자동 실행 설정을 해제하려면 disable 명령어 사용
+sudo systemctl disable docker.service
+sudo systemctl disable containerd.service
+
 
 - git 
-$ sudo apt-get install git-core
+$ sudo yum install git-core
 
   * git setting 
   $ sudo git config --global user.name "계정"
@@ -114,13 +146,14 @@ $ sudo apt-get install git-core
   $ vi ~/.git-credentials 
   https://devsunset:git_token_v@github.com
 
-- python (pip3 venv)
-$ sudo apt install python3-pip
-$ sudo apt-get install python3-venv
+  # skip 
+      - python (pip3 venv)
+      $ sudo yum install python3-pip
+      $ sudo yum install python3-venv
 
-- cockpit (https://cockpit-project.org/)
-$ sudo apt install -t ${VERSION_CODENAME}-backports cockpit
-  VERSION_CODENAME값은 /etc/os-release 파일에서 확인 
+      - cockpit (https://cockpit-project.org/)
+      $ sudo yum install -t ${VERSION_CODENAME}-backports cockpit
+        VERSION_CODENAME값은 /etc/os-release 파일에서 확인 `
 
 #############################
 # DOCKER SETTING
@@ -139,31 +172,31 @@ $ sudo apt install -t ${VERSION_CODENAME}-backports cockpit
 * nginx
   $ docker run -d -p 80:80 -v /workspace/app/nginx/conf:/etc/nginx/conf.d:ro -v /workspace/app/nginx/www:/usr/share/nginx/html --name nginx  nginx
 
-* mariadb
-  $ docker run --restart=always --name mariadb -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=PASSWORD -v /workspace/app/mariadb:/var/lib/mysql/ mariadb
+docker pull mariadb:10.4
 
-  * mariadb docker shell 접속
-  $ docker exec -it mariadb /bin/bash
-  # mysql -u root -p
-  select now();
-  set global time_zone = 'Asia/Seoul';
-  set time_zone = 'Asia/Seoul';
-  select now();
+* mariadb
+  $ docker run --restart=always --name mariadb -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=PASSWORD -v /workspace/app/mariadb:/var/lib/mysql/ mariadb:10.4
+    * mariadb docker shell 접속
+    $ docker exec -it mariadb /bin/bash
+    # mysql -u root -p
+    select now();
+    set global time_zone = 'Asia/Seoul';
+    set time_zone = 'Asia/Seoul';
+    select now();
 
 * postgres
   $ docker run -d -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=PASSWORD -v /workspace/app/postgres/pgdata:/var/lib/postgresql/data postgres
+    * postgres docker shll 접속 
+    $ docker exec -it postgres /bin/bash
 
-  * postgres docker shll 접속 
-  $ docker exec -it postgres /bin/bash
+    * psql 명령 실행 
+    psql --username=postgres --dbname=postgres
 
-  * psql 명령 실행 
-  psql --username=postgres --dbname=postgres
+    CREATE ROLE sample LOGIN CREATEDB PASSWORD 'PASSWORD';
+    \du
 
-  CREATE ROLE sample LOGIN CREATEDB PASSWORD 'PASSWORD';
-  \du
-
-  CREATE DATABASE sample OWNER sample;
-  \l
+    CREATE DATABASE sample OWNER sample;
+    \l
 
 * mongo
   $ docker run -d -p 27017:27017 --name mongo -v /workspace/app/mongo/db:/data/db  mongo --auth
@@ -181,42 +214,49 @@ $ sudo apt install -t ${VERSION_CODENAME}-backports cockpit
 	 roles: [ { role: "root", db: "admin" } ]
 	 })
 
+  db.createUser(
+	 {
+	 user: "devsunset",
+	 pwd: "gotogether12#",
+	 roles: [ { role: "root", db: "admin" } ]
+	 })
+
 * redis
   $ docker run -d -p 6379:6379 --name redis -v /workspace/app/redis/data:/data redis --appendonly yes
 
-  #* tomcat
-  #$ docker run -d -p 8080:8080 --name tomcat tomcat 
 
-  #* jenkins
-  #$ docker run -u 0 -d -p 8181:8080 --name jenkins -v /workspace/app/jenkins:/var/jenkins_home -e JAVA_OPTS='-Duser.timezone=Asia/Seoul #-Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8' jenkins/jenkins:lts
+# skip 
+      #* tomcat
+      #$ docker run -d -p 8080:8080 --name tomcat tomcat 
+      
+      #* jenkins
+      #$ docker run -u 0 -d -p 8181:8080 --name jenkins -v /workspace/app/jenkins:/var/jenkins_home -e JAVA_OPTS='-Duser.timezone=Asia/Seoul #-Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8' jenkins/jenkins:lts
 
-	#* sonarqube (not use - reson : memory 2G)
-	#$ docker run -d -p 9000:9000 -p 9032:9032 --name sonarqube sonarqube
+      #* sonarqube (not use - reson : memory 2G)
+      #$ docker run -d -p 9000:9000 -p 9032:9032 --name sonarqube sonarqube
 
 ------------------------------------------------------------
 # firewall 
 
 * oracle cloud - firewall port setting 
 
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 3306 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 4000 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 6739 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 8080 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 8181 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 8282 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 8383 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 9090 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 5432 -m state --state NEW,ESTABLISHED -j ACCEPT
-$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 27017 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 3306 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 4000 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 6739 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 8080 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 8181 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 8282 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 8383 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 9090 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 5432 -m state --state NEW,ESTABLISHED -j ACCEPT
+$ sudo iptables -A INPUT  -i eth0 -p tcp --dport 27017 -m state --state NEW,ESTABLISHED -j ACCEPT
 
-$ sudo iptables--list
+$ sudo iptables --list
 
 * 재부팅 후에도 방화벽 정책 유지 
   ① 패키지 설치: 
-  $ sudo apt-get install iptables-persistent  (or netfilter-persistent)
+  $ sudo yum install iptables-services
   ② 방화벽 정책을 저장: 
-  $ sudo netfilter-persistent save
-  ③ 방화벽 정책을  다시 로드: 
-  $ sudo netfilter-persistent start
+  $ sudo  iptables-save
